@@ -7,6 +7,8 @@ import { Col } from "react-bootstrap";
 import AddBtn from "./components/AddBtn";
 import Filter from "./components/Filter";
 import Rating from "./components/Rating";
+import { Route, Routes } from "react-router-dom";
+import Desctrail from "./components/Desctrail";
 
 const App = () => {
   const [movies, setMovies] = useState([
@@ -17,6 +19,7 @@ const App = () => {
         "L'ascension fulgurante et la chute spectaculaire de George Jung, un trafiquant de drogue légendaire des années 70. Sa vie tumultueuse est marquée par des moments d'euphorie décadente et des revers dévastateurs, illustrant le coût exorbitant du monde du crime.",
       posterURL:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/ii4sylRdQnLFPMCLhaER7vb0J6N.jpg",
+      trailer: "https://www.youtube.com/embed/scWkP1GdnuU?si=YH6cN_WlINPh89I4",
       rating: 5,
     },
 
@@ -27,6 +30,7 @@ const App = () => {
         "John Wick, ancien tueur à gages à la retraite, est forcé de replonger dans un monde violent lorsqu'un crime odieux frappe trop près de chez lui. La quête de vengeance qui en résulte offre une symphonie d'action stylisée, où la justice personnelle se mesure en balles.",
       posterURL:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/8gd71hpzHIF3gCkmJBwV5egtu3k.jpg",
+      trailer: "https://www.youtube.com/embed/C0BMx-qxsP4?si=9B1WQDihjNPfSJ7p",
       rating: 4,
     },
 
@@ -37,6 +41,7 @@ const App = () => {
         "Pendant la Grande Dépression, le redoutable criminel John Dillinger défie les autorités avec audace. Le film plonge dans la traque intense menée par l'agent du FBI Melvin Purvis, offrant un regard fascinant sur cette ère de criminalité notoire et de justice implacable.",
       posterURL:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/hM4UMGbLdf4NoyTvqnxdu18okA6.jpg",
+      trailer: "https://www.youtube.com/embed/C0BMx-qxsP4?si=9B1WQDihjNPfSJ7p",
       rating: 3,
     },
 
@@ -47,6 +52,7 @@ const App = () => {
         "Tony Montana, immigrant cubain, gravit les échelons violents du monde criminel de Miami. Dans cette saga épique de pouvoir et de corruption, Scarface explore les conséquences sombres d'une ambition sans limites dans le trafic de drogue impitoyable.",
       posterURL:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/n8C5IuldxTcyo6bWqHfwr4qz8jX.jpg",
+      trailer: "https://www.youtube.com/embed/C0BMx-qxsP4?si=9B1WQDihjNPfSJ7p",
       rating: 2,
     },
   ]);
@@ -70,7 +76,20 @@ const App = () => {
             />
           </Col>
         </Row>
-        <MovieListe movies={movies} title={title} rate={rate} rating={Rating} />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <MovieListe
+                movies={movies}
+                title={title}
+                rate={rate}
+                rating={Rating}
+              />
+            }
+          />
+          <Route path="/trailer/:id" element={<Desctrail movies={movies} />} />
+        </Routes>
       </div>
     </Container>
   );
